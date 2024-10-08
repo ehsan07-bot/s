@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Software Engineer Portfolio</title>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body */
+        body {
+            font-family: 'Georgia', serif; /* Vintage feel with serif font */
+            background-color: #f7f9fc; /* Light Grayish Blue */
+            color: #3b3c36; /* Dark Charcoal */
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Smooth transitions */
+        a, h1, h2, h3, p, button {
+            transition: all 0.3s ease;
+        }
+
+        /* Centered Intro Section */
+        .intro {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #a8e0ff, #d5d6ff); /* Light Blue to Light Lavender Gradient */
+            color: #333; /* Darker Text */
+            padding: 0 20px;
+            position: relative;
+            animation: fadeIn 1s ease-in-out; /* Fade-in animation */
+        }
+
+        .intro h1 {
+            font-size: 4rem;
+            margin-bottom: 10px;
+        }
+
+        .intro p {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            max-width: 600px;
+        }
+
+        .intro a {
+            padding: 10px 25px;
+            background-color: #ff9a9e; /* Light Coral */
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            animation: pulse 2s infinite; /* Pulse animation */
+            margin-top: 20px; /* Add margin for spacing */
+        }
+
+        .intro a:hover {
+            background: linear-gradient(135deg, #ff6b6b, #ffcc00); /* Dynamic color combination on hover */
+            color: white; /* Keep text white on hover */
+        }
+
+        /* Keyframe animations */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Navigation Menu */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            text-align: right;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #ff9a9e; /* Light Coral */
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        nav ul li a:hover {
+            background: linear-gradient(135deg, #ff6b6b, #ffcc00); /* Dynamic hover effect */
+            color: white; /* Keep text white on hover */
+            padding: 5px 10px; /* Slight padding increase on hover */
+            border-radius: 10px; /* Rounded corners */
+        }
+
+        /* Home Section */
+        #home {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #a8e0ff, #d5d6ff); /* Light Blue to Light Lavender Gradient */
+            color: #333; /* Darker Text */
+            padding: 0 20px;
+            animation: fadeIn 1s ease-in-out; /* Fade-in animation */
+        }
+
+        #home h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        #home p {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            max-width: 600px;
+        }
+
+        /* Projects Section */
+        #projects {
+            padding: 100px 50px;
+            background-color: #e8f9fd; /* Light Cyan */
+            animation: fadeIn 1s ease-in-out; /* Fade-in animation */
+        }
+
+        #projects h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 50px;
+            color: #ff9a9e; /* Light Coral */
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .project-card {
+            background-color: #ffffff; /* White */
+            border-radius: 15px;
+            padding: 20px;
+            color: #3b3c36; /* Dark Charcoal */
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeIn 1s ease-in-out; /* Fade-in animation */
+        }
+
+        .project-card:hover {
+            transform: scale(1.05); /* Slightly increase size on hover */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .project-card a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 15px;
+            background-color: #ff9a9e; /* Light Coral */
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .project-card a:hover {
+            background: linear-gradient(135deg, #ff6b6b, #ffcc00); /* Dynamic hover effect */
+            color: white; /* Keep text white on hover */
+        }
+
+        /* Skills Section */
+        #skills {
+            padding: 100px 50px;
+            background-color: #e8f9fd; /* Light Cyan */
+            animation: fadeIn 1s ease-in-out; /* Fade-in animation */
+        }
+
+        #skills h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 50px;
+            color: #ff9a9e; /* Light Coral */
+        }
+
+        .skills-list {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .skills-item {
+            background-color: #ff9a9e; /* Light Coral */
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            transition: background 0.3s ease; /* Smooth transition for hover effect */
+        }
+
+        .skills-item:hover {
+            background: linear-gradient(135deg, #ff6b6b, #ffcc00); /* Dynamic hover effect */
+        }
+
+        /* Education Section */
+        #education {
+            padding: 100px 50px;
+            background-color: #e8f9fd; /* Light Cyan */
+            animation: fadeIn 1s ease-in-out; /* Fade-in animation */
+        }
+
+        #education h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 50px;
+            color: #ff9a9e; /* Light Coral */
+        }
+
+        /* Contact Section */
+        #contact {
+            padding: 100px 50px;
+            background-color: #e8f9fd; /* Light Cyan */
+            text-align: center;
+            animation: fadeIn 1s ease-in-out; /* Fade-in animation */
+        }
+
+        #contact h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #3b3c36; /* Dark Charcoal */
+        }
+
+        #contact a {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            color: #ff9a9e; /* Light Coral */
+            text-decoration: none;
+            transition: color 0.3s ease; /* Smooth transition for hover effect */
+        }
+
+        #contact a:hover {
+            color: #ff6b6b; /* Darker Coral */
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #ffffff; /* White */
+            color: #3b3c36; /* Dark Charcoal */
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            animation: fadeIn 1s ease-in-out; /* Fade-in animation */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .intro h1 {
+                font-size: 2.5rem; /* Smaller heading for mobile */
+            }
+
+            .intro p {
+                font-size: 1.2rem; /* Smaller paragraph for mobile */
+            }
+
+            #projects h2,
+            #skills h2,
+            #education h2,
+            #contact h2 {
+                font-size: 2.5rem; /* Smaller heading for mobile */
+            }
+
+            .project-card {
+                padding: 15px; /* Smaller padding for project cards */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Menu -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="intro">
+        <h1>Shaikh Ehsanali</h1>
+        <p>Welcome to my portfolio! I am a passionate software engineer eager to contribute to innovative projects.</p>
+        <a href="#projects">See My Work</a>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <h3>Apply for Job</h3>
+                <p>In this program you can select your profession and apply for this job.</p>
+                <a href="file:///C:/Users/aisha/OneDrive/Documents/project1.html">View Project</a>
+            </div>
+            <div class="project-card">
+                <h3>Login page</h3>
+                <p>It just a simple login page there is nothing in special</p>
+                <a href="file:///C:/Users/aisha/OneDrive/Documents/project2.html">View Project</a>
+            </div>
+            <div class="project-card">
+                <h3>Simple Calculator</h3>
+                <p>Simple Calculator created by Chatgpt.</p>
+                <a href="file:///C:/Users/aisha/Desktop/C++%20Programming/w/project3.html">View Project</a>
+            </div>
+            <div class="project-card">
+                <h3>Number Guessing game</h3>
+                <p>Simple Guessing game .</p>
+                <a href="file:///C:/Users/aisha/Desktop/C++%20Programming/w/project4.html">View Project</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>Skills</h2>
+        <ul class="skills-list">
+            <li class="skills-item">HTML</li>
+            <li class="skills-item">CSS</li>
+            <li class="skills-item">JavaScript</li>
+            <li class="skills-item">C Programming</li>
+            <li class="skills-item">C++ Programming</li>
+            <li class="skills-item">Java Programming</li>
+        </ul>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <h2>Education</h2>
+        <p>Burhani College Nesbit road mazgaon</p>
+        <p>Mumbai University| 2024-Continue</p>
+        <p>Bachelor of Computer Science, Programming</p>
+        <p>Currently  i am in Second year student.</p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>mobile number : 9769351949</p>
+        <p>Email: <a href="aishanshaikh7@gmail.com">aishanshaikh7.com</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/ehsan-shaikh-1416142a1/">Click this</a></p>
+        <p>Instagram: <a href="https://www.instagram.com/__ehsan.ali.__/">Instagram ID</a></p>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Shaikh Ehsanali. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Function to download CV
+        document.getElementById('downloadCV').addEventListener('click', function() {
+            const link = document.createElement('a');
+            link.href = 'path/to/your/cv.pdf'; // Replace with the actual path to your CV file
+            link.download = 'Your_Name_CV.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+    </script>
+
+</body>
+</html>

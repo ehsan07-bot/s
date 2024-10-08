@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0; /* Light gray background */
+            font-family: Arial, sans-serif;
+        }
+
+        .game-container {
+            background: white; /* White background for the game */
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px; /* Fixed width for the game */
+            text-align: center; /* Center text */
+        }
+
+        .input-group {
+            margin: 20px 0; /* Space around input elements */
+        }
+
+        .input-group input {
+            padding: 10px;
+            font-size: 16px;
+            width: 60%; /* Input width */
+            border-radius: 5px;
+            border: 1px solid #ccc; /* Light border */
+        }
+
+        .button {
+            padding: 10px 15px;
+            background: #4CAF50; /* Green button */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .button:hover {
+            background: #45a049; /* Darker green on hover */
+        }
+
+        .message {
+            margin-top: 10px; /* Space above message */
+            font-size: 18px; /* Font size for messages */
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Number Guessing Game</h1>
+        <p>Guess a number between 1 and 100</p>
+        <div class="input-group">
+            <input type="number" id="guessInput" placeholder="Enter your guess" min="1" max="100" />
+            <button class="button" onclick="checkGuess()">Guess</button>
+        </div>
+        <div class="message" id="message"></div>
+        <button class="button" onclick="resetGame()" style="display: none;" id="resetButton">Play Again</button>
+    </div>
+
+    <script>
+        let randomNumber = Math.floor(Math.random() * 100) + 1; // Generate random number between 1 and 100
+        let attempts = 0; // Track number of attempts
+
+        function checkGuess() {
+            const guessInput = document.getElementById('guessInput');
+            const message = document.getElementById('message');
+            const resetButton = document.getElementById('resetButton');
+            const guess = Number(guessInput.value);
+            attempts++;
+
+            if (guess < 1 || guess > 100) {
+                message.textContent = 'Please enter a number between 1 and 100.';
+            } else if (guess === randomNumber) {
+                message.textContent = `Congratulations! You've guessed the number ${randomNumber} in ${attempts} attempts.`;
+                resetButton.style.display = 'inline-block'; // Show the play again button
+            } else if (guess < randomNumber) {
+                message.textContent = 'Too low! Try again.';
+            } else {
+                message.textContent = 'Too high! Try again.';
+            }
+
+            guessInput.value = ''; // Clear input field
+            guessInput.focus(); // Focus on the input field
+        }
+
+        function resetGame() {
+            randomNumber = Math.floor(Math.random() * 100) + 1; // Reset random number
+            attempts = 0; // Reset attempts
+            document.getElementById('message').textContent = ''; // Clear message
+            document.getElementById('guessInput').value = ''; // Clear input
+            document.getElementById('resetButton').style.display = 'none'; // Hide play again button
+        }
+    </script>
+</body>
+</html>
